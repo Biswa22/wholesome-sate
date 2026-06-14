@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wholesome Sate — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f0e8;
+      color: #2c2c2a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(157, 193, 107, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -10%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(29, 158, 117, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leaf-icon {
+      display: inline-block;
+      width: 64px;
+      height: 64px;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e1f5ee;
+      color: #0f6e56;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      border: 1px solid #9fe1cb;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 600;
+      color: #1a2e1a;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    h1 span {
+      color: #1d9e75;
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 300;
+      color: #444441;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .tagline strong {
+      font-weight: 500;
+      color: #2c2c2a;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #1d9e75;
+      margin: 0 auto 2.5rem;
+      border-radius: 2px;
+    }
+
+    .notify-form {
+      display: flex;
+      gap: 10px;
+      max-width: 420px;
+      margin: 0 auto 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .notify-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      border: 1.5px solid #c3d9c3;
+      border-radius: 100px;
+      background: #fff;
+      color: #2c2c2a;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .notify-form input[type="email"]:focus {
+      border-color: #1d9e75;
+    }
+
+    .notify-form input[type="email"]::placeholder {
+      color: #888780;
+    }
+
+    .notify-form button {
+      padding: 12px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      background: #1d9e75;
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .notify-form button:hover { background: #0f6e56; }
+    .notify-form button:active { transform: scale(0.98); }
+
+    .success-state {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      background: #e1f5ee;
+      border: 1.5px solid #9fe1cb;
+      border-radius: 100px;
+      padding: 12px 24px;
+      max-width: 420px;
+      margin: 0 auto 3rem;
+      animation: fadeSlideIn 0.4s ease;
+    }
+
+    .success-state.visible { display: flex; }
+
+    .success-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1d9e75;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .success-icon svg { display: block; }
+
+    .success-text { text-align: left; }
+    .success-text strong { display: block; font-size: 14px; font-weight: 500; color: #085041; }
+    .success-text span { font-size: 12px; color: #0f6e56; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .pillars {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .pillar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid #d3d1c7;
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-size: 13px;
+      color: #444441;
+    }
+
+    .pillar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1d9e75;
+      flex-shrink: 0;
+    }
+
+    footer {
+      font-size: 12px;
+      color: #888780;
+      letter-spacing: 0.03em;
+    }
+
+    footer a {
+      color: #1d9e75;
+      text-decoration: none;
+    }
+
+    @media (max-width: 480px) {
+      .notify-form { flex-direction: column; align-items: stretch; }
+      .notify-form input[type="email"], .notify-form button { min-width: unset; border-radius: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <svg class="leaf-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="32" cy="32" r="32" fill="#e1f5ee"/>
+      <path d="M32 48 C32 48 16 38 16 26 C16 18.268 23.163 12 32 12 C40.837 12 48 18.268 48 26 C48 38 32 48 32 48Z" fill="#1d9e75" opacity="0.85"/>
+      <path d="M32 48 L32 28" stroke="#085041" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M32 36 C32 36 26 30 22 27" stroke="#085041" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+      <path d="M32 32 C32 32 38 27 42 25" stroke="#085041" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+
+    <div class="badge">Coming Soon</div>
+
+    <h1>Healthy food is<br>not a <span>luxury.</span></h1>
+
+    <div class="divider"></div>
+
+    <p class="tagline">
+      We're bringing <strong>nutritious, wholesome food</strong> straight to your home —
+      because eating well should be simple, affordable, and joyful for everyone.
+    </p>
+
+    <div class="pillars">
+      <div class="pillar"><span class="pillar-dot"></span> Farm-fresh ingredients</div>
+      <div class="pillar"><span class="pillar-dot"></span> Nutrition-first</div>
+      <div class="pillar"><span class="pillar-dot"></span> Delivered to your door</div>
+    </div>
+
+    <form class="notify-form" id="notify-form" onsubmit="handleNotify(event)">
+      <input type="email" id="email-input" placeholder="Enter your email to get notified" required />
+      <button type="submit">Notify me</button>
+    </form>
+
+    <div class="success-state" id="success-state">
+      <div class="success-icon">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 7L5.5 10.5L12 3.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="success-text">
+        <strong>You're on the list!</strong>
+        <span>We'll let you know the moment we launch.</span>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2026 The Wholesome Sate &nbsp;&middot;&nbsp;
+      <a href="mailto:hello@thewholesomesate.com">hello@thewholesomesate.com</a>
+    </footer>
+
+  </div>
+
+  <script>
+    function handleNotify(e) {
+      e.preventDefault();
+      document.getElementById('notify-form').style.display = 'none';
+      document.getElementById('success-state').classList.add('visible');
+    }
+  </script>
+</body>
+</html>
